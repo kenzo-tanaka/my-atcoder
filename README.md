@@ -4,6 +4,10 @@
 
 ## Python文法
 
+[15 Extended Slices](https://docs.python.org/2.3/whatsnew/section-slices.html)
+
+> Negative values also work to make a copy of the same list in reverse order:
+
 ```py
 s = 'aaaeee'
 print(s[::-1])
