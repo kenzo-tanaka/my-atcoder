@@ -1,20 +1,10 @@
 A, B, K = map(int, input().split())
-l = list(range(A, B + 1))
-r = list(reversed(l))
 
-result = []
-
-if len(l) < K:
-    result = l
+if (B - A + 1) <= 2 * K:
+    for i in list(range(A, B + 1)):
+        print(i)
 else:
-    for i in range(K):
-        result.append(l[i])
-
-    for i in range(K):
-        if (not r[i] in result):
-            result.append(r[i])
-
-    result.sort()
-
-for i in result:
-    print(i)
+    for i in range(A, A + K):
+        print(i)
+    for i in range(B - K + 1, B + 1):
+        print(i)
