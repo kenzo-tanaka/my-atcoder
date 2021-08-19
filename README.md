@@ -13,3 +13,12 @@ s = 'aaaeee'
 print(s[::-1])
 # -> eeeaaa
 ```
+
+`lambda`: 無名関数
+
+[Pythonのlambda（ラムダ）式の書き方と使い方まとめ | HEADBOOST](https://www.headboost.jp/python-lambda/)
+
+```py
+# lambda 引数1, 引数2, ..., 引数n : 式
+square = lambda n : n**2
+```
