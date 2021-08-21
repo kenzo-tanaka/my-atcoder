@@ -22,3 +22,6 @@ print(s[::-1])
 # lambda 引数1, 引数2, ..., 引数n : 式
 square = lambda n : n**2
 ```
+
+
+11
