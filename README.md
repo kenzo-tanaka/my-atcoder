@@ -22,3 +22,11 @@ print(s[::-1])
 # lambda 引数1, 引数2, ..., 引数n : 式
 square = lambda n : n**2
 ```
+
+
+`for`文で辞書を定義:
+
+```py
+submissions = {i + 1: '' for i in range(3)}
+# {1: '', 2: '', 3: ''}
+```
