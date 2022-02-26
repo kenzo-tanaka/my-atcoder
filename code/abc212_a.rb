@@ -6,6 +6,9 @@ def answer(a, b)
 
     'Alloy'
 end
+a,b = gets.chomp.split(' ').map(&:to_i)
+puts answer(a,b)
+ 
 
 class SampleTest < Minitest::Test
     def test_gold
