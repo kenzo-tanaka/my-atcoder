@@ -1,12 +1,19 @@
 require 'minitest/autorun'
 
 def answer(a, b)
-    return 'Alloy' if a > 0 && b > 0
+    return 'Gold' if a > 0 && b == 0
+    return 'Silver' if a == 0 && b > 0
 
-    'Silver'
+    'Alloy'
 end
 
 class SampleTest < Minitest::Test
+    def test_gold
+        a = 1
+        b = 0
+        assert_equal answer(a,b), 'Gold'
+    end
+
     def test_alloy
         a = 50
         b = 50
