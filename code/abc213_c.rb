@@ -7,10 +7,8 @@ def answer(h, w, n, abs)
       a << ab[0]
       b << ab[1]
    end
-
    a_hash = build_hash(a)
    b_hash = build_hash(b)
-
 
    result = []
    abs.each do |ab|
