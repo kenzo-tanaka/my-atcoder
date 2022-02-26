@@ -1,8 +1,32 @@
 require 'minitest/autorun'
 
 def answer(h, w, n, abs)
-   print abs
-   [[2,1], [1,2]]
+   a = []
+   b = []
+   abs.each do |ab|
+      a << ab[0]
+      b << ab[1]
+   end
+
+   a_hash = build_hash(a)
+   b_hash = build_hash(b)
+
+
+   result = []
+   abs.each do |ab|
+      x = a_hash[ab[0].to_s] 
+      y = b_hash[ab[1].to_s] 
+      result << [x,y]
+   end
+   result
+end
+
+def build_hash(array)
+   hash = {}
+   array.sort.each_with_index do |x,index|
+      hash[x.to_s] = index + 1
+   end
+   hash
 end
 
 class SampleTest < Minitest::Test
