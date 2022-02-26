@@ -19,10 +19,9 @@ def answer(h, w, n, abs)
    result
 end
 
-# TODO: 多分番号が重複した時にインクリメントしてしまっている
 def build_hash(array)
    hash = {}
-   array.sort.each_with_index do |x,index|
+   array.uniq.sort.each_with_index do |x,index|
       hash[x.to_s] = index + 1
    end
    hash
