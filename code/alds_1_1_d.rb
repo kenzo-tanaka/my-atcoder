@@ -1,6 +1,6 @@
 def answer(n:, r:)
     min = r[0]
-    max = -200_000
+    max = -10**9
     (1..(n-1)).each do |n|
         x = r[n]
         max = [max, x - min].max
