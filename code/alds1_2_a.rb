@@ -16,5 +16,15 @@ def answer(array)
             j -= 1
         end
     end
-    [[1,2,3,4,5], counter]
+    [tmp, counter]
 end
+
+def main
+    n = gets.chomp.to_i
+    a = gets.chomp.split(' ').map(&:to_i)
+    answer(a)
+end
+
+array, counter = main
+puts array.join(' ')
+puts counter
