@@ -17,11 +17,12 @@ jobs:
         id: script
         run: |
           chmod +x ./request_atcoder.sh 
-          echo "::set-output name=body::$(bash ./request_atcoder.sh)"
+          echo "$(bash ./request_atcoder.sh)" >> $BODY
 
       - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: "Atcoder復習✍️ ${{ steps.date.outputs.today }}"
-          body: ${{ steps.script.outputs.body }}
+          body: |
+            ${{ env.BODY }}
