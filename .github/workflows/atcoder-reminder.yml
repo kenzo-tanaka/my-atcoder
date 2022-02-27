@@ -1,0 +1,14 @@
+name: run reminder
+on: :push
+
+jobs:
+  build:
+    name: run script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run script
+        run: |
+          chmod +x ./request_atcoder.sh
+          bash ./request_atcoder.sh
