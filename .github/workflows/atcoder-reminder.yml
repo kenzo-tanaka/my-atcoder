@@ -10,7 +10,12 @@ jobs:
         id: date
         run: |
           echo "::set-output name=today::$(date "+%Y/%m/%d")"
-          chmod +x ./request_atcoder.sh
+
+      - name: Run script
+        uses: actions/checkout@v2
+        id: script
+        run: |
+          chmod +x ./request_atcoder.sh 
           echo "::set-output name=body::$(bash ./request_atcoder.sh)"
 
       - name: Create an issue
@@ -18,4 +23,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: "Atcoder復習✍️ ${{ steps.date.outputs.today }}"
-          body: ${{ steps.date.outputs.body }}
+          body: ${{ steps.script.outputs.body }}
