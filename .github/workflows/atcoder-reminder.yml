@@ -6,13 +6,14 @@ jobs:
     name: run script
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Get today's date
         id: date
         run: |
           echo "::set-output name=today::$(date "+%Y/%m/%d")"
 
       - name: Run script
-        uses: actions/checkout@v2
         id: script
         run: |
           chmod +x ./request_atcoder.sh 
