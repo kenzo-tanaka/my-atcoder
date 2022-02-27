@@ -1,5 +1,5 @@
 name: run reminder
-on: :push
+on: push
 
 jobs:
   build:
