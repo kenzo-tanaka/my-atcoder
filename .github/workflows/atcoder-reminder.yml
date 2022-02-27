@@ -17,7 +17,7 @@ jobs:
         id: script
         run: |
           chmod +x ./request_atcoder.sh 
-          echo "$(bash ./request_atcoder.sh)" >> $BODY
+          echo "$(bash ./request_atcoder.sh)" >> $GITHUB_ISSUE_BODY
 
       - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
