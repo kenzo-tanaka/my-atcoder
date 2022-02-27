@@ -17,7 +17,12 @@ jobs:
         id: script
         run: |
           chmod +x ./request_atcoder.sh 
-          echo "$(bash ./request_atcoder.sh)" >> $GITHUB_ISSUE_BODY
+          description=$(bash ./request_atcoder.sh)
+          description="${description//'%'/'%25'}"
+          description="${description//$'\n'/'%0A'}"
+          description="${description//$'\r'/'%0D'}"
+          echo $description
+          echo "::set-output name=body::$description"
 
       - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
