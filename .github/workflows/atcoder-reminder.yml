@@ -30,4 +30,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: "Atcoder復習✍️ ${{ steps.date.outputs.today }}"
           body: |
-            ${{ env.BODY }}
+            ${{ steps.script.outputs.body }}
