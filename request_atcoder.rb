@@ -7,7 +7,8 @@ class RequestAtcoder
   def self.get_problems(date:)
     prev_day = date
     next_day = date + 1
-    JSON.parse(get_body(date: prev_day)) - JSON.parse(get_body(date: next_day))
+    result = JSON.parse(get_body(date: prev_day)) - JSON.parse(get_body(date: next_day))
+    result.select { |x| x["result"] = "WA" }
   end
 
   def self.get_body(date:)
