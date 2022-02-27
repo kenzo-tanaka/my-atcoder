@@ -12,6 +12,6 @@ jobs:
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          title: ${{ steps.date.outputs.today }}
+          title: "Atcoder復習✍️"
           body: |
             ## foo
