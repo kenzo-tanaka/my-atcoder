@@ -3,8 +3,8 @@ require 'minitest/autorun'
 def ans(s:, t:)
     counter = 0
     for a in 0..s
-        for b in 0..s
-            for c in 0..s
+        for b in 0..(s-a)
+            for c in 0..(s-a-b)
                 counter += 1 if a+b+c <= s && a*b*c <= t
             end
         end
