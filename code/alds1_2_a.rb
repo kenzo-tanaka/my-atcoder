@@ -1,6 +1,13 @@
 def answer(array)
-    expected = [[1,2,3,4,5], 8]
-    # TODO: 変数iを配列の先頭indexから末尾indexまで移動する
-    # TODO: 変数jは(N-1)..(i+1)までを減少しながら移動する(これが終了したとき i++ する)
+    n = array.length
+    counter = 0
+
+    for i in (0..(n-1))
+        j = n - 1
+        while j >= i+1
+            j -= 1
+        end
+    end
     # TODO: array[j] < array[j-1] であれば、順番の入れ替えをする
+    expected = [[1,2,3,4,5], 8]
 end
