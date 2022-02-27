@@ -10,11 +10,12 @@ jobs:
         id: date
         run: |
           echo "::set-output name=today::$(date "+%Y/%m/%d")"
+          chmod +x ./request_atcoder.sh
+          echo "::set-output name=body::$(bash ./request_atcoder.sh)"
 
       - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: "Atcoder復習✍️ ${{ steps.date.outputs.today }}"
-          body: |
-            ## foo
+          body: ${{ steps.date.outputs.body }}
