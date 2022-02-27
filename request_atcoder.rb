@@ -6,6 +6,6 @@ require 'net/http'
 # res = Net::HTTP.get_response(uri)
 # puts res.body
 
-yesterday = Date.today - 1
-7_days_ago = Date.today - 7
-30_days_ago = Date.today - 30
+yesterday = (Date.today - 1).to_time
+7_days_ago = (Date.today - 7).to_time
+30_days_ago = (Date.today - 30).to_time
