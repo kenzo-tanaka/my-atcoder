@@ -7,5 +7,5 @@ require 'net/http'
 # puts res.body
 
 yesterday = (Date.today - 1).to_time
-7_days_ago = (Date.today - 7).to_time
-30_days_ago = (Date.today - 30).to_time
+one_week_ago = (Date.today - 7).to_time
+one_month_ago = (Date.today - 30).to_time
