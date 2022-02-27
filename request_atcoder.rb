@@ -2,9 +2,9 @@ require 'date'
 require 'uri'
 require 'net/http'
 
-yesterday = (Date.today - 1).to_time
-one_week_ago = (Date.today - 7).to_time
-one_month_ago = (Date.today - 30).to_time
+yesterday = Date.today - 1
+one_week_ago = Date.today - 7
+one_month_ago = Date.today - 30
 
 def get_body(date:)
     unixtime = date.to_time.to_i
