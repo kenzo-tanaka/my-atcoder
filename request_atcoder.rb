@@ -1,3 +1,4 @@
+require 'active_support'
 require 'uri'
 require 'net/http'
 
