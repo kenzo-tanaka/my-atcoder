@@ -18,14 +18,14 @@ class RequestAtcoder
   end
 
   def self.yesterday_report
-    print RequestAtcoder.get_problems(date: Date.today - 1).to_json
+    print get_problems(date: Date.today - 1).to_json
   end
 
   def self.one_week_ago_report
-    print RequestAtcoder.get_problems(date: Date.today - 7).to_json
+    print get_problems(date: Date.today - 7).to_json
   end
 
   def self.one_month_ago_report
-    print RequestAtcoder.get_problems(date: Date.today - 30).to_json
+    print get_problems(date: Date.today - 30).to_json
   end
 end
