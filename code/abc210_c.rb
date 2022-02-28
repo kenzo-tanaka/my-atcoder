@@ -7,29 +7,16 @@ def ans(n:, k:, c:)
   hash = Hash.new
   c.each { |x| hash[x.to_s] = 0 }
 
-  # set initial values
-  c[0..(k-1)].each do |x|
-    kind += 1 if hash[x.to_s] == 0
-    hash[x.to_s] += 1
+  n.times do |i|
+    kind += 1 if hash[c[i].to_s] == 0
+    hash[c[i].to_s] += 1
 
-    max = kind
-  end
+    if (i >= k)
+      hash[c[i-k].to_s] -= 1
+      kind -= 1 if hash[c[i-k].to_s] == 0
+    end
 
-  # loop
-  (n - k).times do |i|
-    i = i + 1
-    first = c[i]
-    last = c[(k-1)+i]
-
-    # check kind
-    hash[first.to_s] -= 1
-    kind -= 1 if hash[first.to_s] == 0
-
-    kind += 1 if hash[last.to_s] == 0
-    hash[last.to_s] += 1
-
-    # Set max
-    max = [max, kind].max
+    max = [kind, max].max
   end
 
   max
