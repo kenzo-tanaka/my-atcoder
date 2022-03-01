@@ -17,3 +17,9 @@ def ans(n:, k:, a:)
 
   result
 end
+
+def main
+  n,k = gets.chomp.split(' ').map(&:to_i)
+  a = gets.chomp.split(' ').map(&:to_i)
+  print ans(n:n, k:k, a:a)
+end
