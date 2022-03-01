@@ -1,34 +1,24 @@
 require 'minitest/autorun'
 
-def ans(s:, t:)
-  counter = 0
-  (s+1).times do |a|
-    (s+1).times do |b|
-      (s+1).times do |c|
-        if a + b + c <=s && a * b * c <= t
-          counter += 1
-        end
-      end
-    end
-  end
-
-  counter
+def ans(s:)
+  %w[3B HR 2B H].all? { s.include?(_1) } ? "Yes" : "No"
 end
 
 def main
-  s,t = gets.chomp.split(' ').map(&:to_i)
-  print ans(s: s, t: t)
+  s = []
+  4.times { s << gets.chomp }
+  print ans(s: s)
 end
 
 class SampleTest < Minitest::Test
   def test_1
-    expected = 4
-    actual = ans(s: 1, t: 0)
+    expected = "Yes"
+    actual = ans(s: %w[3B HR 2B H])
     assert_equal expected, actual
   end
   def test_2
-    expected = 2471
-    actual = ans(s: 30, t: 100)
+    expected = "No"
+    actual = ans(s: %w[2B 3B HR 3B])
     assert_equal expected, actual
   end
 end
