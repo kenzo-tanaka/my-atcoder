@@ -8,9 +8,9 @@ class SampleTest < Minitest::Test
         assert_equal expected, actual
     end
 
-    # def test_2
-    #     expected = true
-    #     actual = true
-    #     assert_equal expected, actual
-    # end
+    def test_2
+        expected = [3]
+        actual = ans(n: 1, k: 3, a: [33])
+        assert_equal expected, actual
+    end
 end
