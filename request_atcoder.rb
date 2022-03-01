@@ -15,7 +15,7 @@ class RequestAtcoder
     prev_day = date
     next_day = date + 1
     result = JSON.parse(get_body(date: prev_day)) - JSON.parse(get_body(date: next_day))
-    result = result.select { |x| x["result"] = "WA" }
+    result = result.select { |x| x["result"] != "AC" }
     result.uniq { |x| [x["contest_id"], x["problem_id"]] }
   end
 
