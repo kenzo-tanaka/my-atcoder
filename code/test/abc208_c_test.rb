@@ -15,17 +15,17 @@ class SampleTest < Minitest::Test
   end
 
   # TLE
-  # def test_3
-  #   expected = [
-  #     142857142857,
-  #     142857142857,
-  #     142857142858,
-  #     142857142857,
-  #     142857142857,
-  #     142857142857,
-  #     142857142857,
-  #   ]
-  #   actual = ans(n: 7, k: 1000000000000, a: [99, 8, 2, 4, 43, 5, 3])
-  #   assert_equal expected, actual
-  # end
+  def test_3
+    expected = [
+      142857142857,
+      142857142857,
+      142857142858,
+      142857142857,
+      142857142857,
+      142857142857,
+      142857142857,
+    ]
+    actual = ans(n: 7, k: 1000000000000, a: [99, 8, 2, 4, 43, 5, 3])
+    assert_equal expected, actual
+  end
 end
