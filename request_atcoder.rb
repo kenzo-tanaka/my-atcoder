@@ -20,7 +20,7 @@ class RequestAtcoder
   end
 
   def self.yesterday_report
-    print get_problems(date: Date.today - 1).to_json
+    print get_problems(date: Date.today - 3).to_json
   end
 
   def self.one_week_ago_report
