@@ -1,4 +1,4 @@
-def ans(a)
+def ans(*a)
   n = a.length
   ls = []
   rs = []
@@ -18,7 +18,7 @@ def ans(a)
   count = 0
 
   n.times do |i|
-    i.times do |j|
+    n.times do |j|
       next if rs[i] < ls[j]
       next if rs[j] > ls[i]
 
@@ -29,15 +29,15 @@ def ans(a)
   count
 end
 
-def main
-  n = gets.chomp.to_i
-  a = []
-  n.times do
-    array = gets.chomp.split(' ').map(&:to_i)
-    a << array
-  end
-
-  print ans(a)
-end
-
-main
+# def main
+#   n = gets.chomp.to_i
+#   a = []
+#   n.times do
+#     array = gets.chomp.split(' ').map(&:to_i)
+#     a << array
+#   end
+#
+#   print ans(*a)
+# end
+#
+# main
