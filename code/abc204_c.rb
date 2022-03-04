@@ -29,5 +29,7 @@ def ans(n,m,abs)
     end
   end
 
+  print routes
+
   result
 end

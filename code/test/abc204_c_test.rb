@@ -13,4 +13,10 @@ class SampleTest < Minitest::Test
     actual = ans(3,0,[])
     assert_equal expected, actual
   end
+
+  def test_3
+    expected = 16
+    actual = ans(4,4,[[1,2], [2,3], [3,4], [4,1]])
+    assert_equal expected, actual
+  end
 end
