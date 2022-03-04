@@ -32,7 +32,7 @@ class SampleTest < Minitest::Test
         %w[3 507364086 545932412],
         %w[4 797872271 935850549],
         %w[2 415488246 685203817],
-      ]
+      ].map { |x| x.map(&:to_i) }
     )
     assert_equal expected, actual
   end

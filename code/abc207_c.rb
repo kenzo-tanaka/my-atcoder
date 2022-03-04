@@ -1,5 +1,30 @@
 def ans(n, a)
-  2
+  ls = []
+  rs = []
+  n.times do |i|
+    ai = a[i]
+    t = ai[0]
+    l = ai[1] * 2
+    r = ai[2] * 2
+
+    l += 1 if t >= 3
+    r -= 1 if t % 2 == 0
+
+    ls << l
+    rs << r
+  end
+
+  result = 0
+  n.times do |i|
+    n.times do |j|
+      next if rs[i] < ls[j]
+      next if rs[j] > ls[i]
+
+      result += 1
+    end
+  end
+
+  result
 end
 
 # def main
