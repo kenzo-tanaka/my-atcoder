@@ -8,8 +8,8 @@ def ans(*a)
     # すべてを閉区間にする
     l = x[1] * 2
     r = x[2] * 2
-    l += 1 if t >= 3
-    r -= 1 if t % 2 == 0
+    l -= 1 if t >= 3
+    r += 1 if t % 2 == 0
 
     ls << l
     rs << r
