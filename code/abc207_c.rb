@@ -4,38 +4,34 @@ def ans(n, a)
   n.times do |i|
     ai = a[i]
     t = ai[0]
-    l = ai[1] * 2
-    r = ai[2] * 2
 
-    l += 1 if t >= 3
-    r -= 1 if t % 2 == 0
+    ls << ai[1]
+    rs << ai[2]
 
-    ls << l
-    rs << r
+    ls[i] *= 2
+    rs[i] *= 2
+    ls[i] += 1 if t >= 3
+    rs[i] -= 1 if t % 2 == 0
   end
 
-  result = 0
-  n.times do |i|
-    n.times do |j|
-      next if rs[i] < ls[j]
-      next if rs[j] > ls[i]
-
-      result += 1
+  cnt = 0
+  (0...n).each do |i|
+    (i+1...n).each do |j|
+      cnt += 1 if [ls[i], ls[j]].max <= [rs[i], rs[j]].min
     end
   end
-
-  result
+  cnt
 end
 
-# def main
-#   n = gets.chomp.to_i
-#   a = []
-#   n.times do
-#     array = gets.chomp.split(' ').map(&:to_i)
-#     a << array
-#   end
-#
-#   print ans(*a)
-# end
-#
-# main
+def main
+  n = gets.chomp.to_i
+  a = []
+  n.times do
+    array = gets.chomp.split(' ').map(&:to_i)
+    a << array
+  end
+
+  print ans(n, a)
+end
+
+main
