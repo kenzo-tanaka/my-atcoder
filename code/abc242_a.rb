@@ -1,9 +1,8 @@
 def ans(a,b,c,x)
-  return 1 if x <= a
+  return 1.000000000000 if x <= a
+  return 0 if x > b
 
-  num = b - (a+1)
-  return 0 if num == 0
-
+  num = b - a
   c.to_f / num.to_f
 end
 

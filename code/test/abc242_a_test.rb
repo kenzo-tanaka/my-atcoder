@@ -13,4 +13,10 @@ class SampleTest < Minitest::Test
     actual = ans(50, 500, 100, 1)
     assert_equal expected, actual
   end
+
+  def test_3
+    expected = 0.0000
+    actual = ans(1, 2, 1, 1000)
+    assert_equal expected, actual
+  end
 end
