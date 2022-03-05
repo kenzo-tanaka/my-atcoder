@@ -2,17 +2,14 @@ require 'minitest/autorun'
 
 def ans(n,k,a)
   result = Array.new(n, default = k/n)
+  tmp = []
+  a.each_with_index { |x,idx| tmp << [x,idx] }
+  tmp.sort!
 
+  # 残りのk個
   k %= n
-
-  tmp_array = []
-  n.times do |i|
-    tmp_array << [a[i], i]
-  end
-  tmp_array.sort!
-
   k.times do |i|
-    idx = tmp_array[i][1]
+    idx = tmp[i][1]
     result[idx] += 1
   end
 
