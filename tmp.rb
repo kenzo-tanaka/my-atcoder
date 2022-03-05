@@ -1,53 +1,43 @@
 require 'minitest/autorun'
 
-def ans(n,k,a)
-  result = Array.new(n, default = k/n)
-  tmp = []
-  a.each_with_index { |x,idx| tmp << [x,idx] }
-  tmp.sort!
+def ans(n,c)
+  c.sort!
+  mod = 10 ** 9 + 7
 
-  # 残りのk個
-  k %= n
-  k.times do |i|
-    idx = tmp[i][1]
-    result[idx] += 1
+  result = 1
+  c.each_with_index do |x, idx|
+    result *= (x-idx)
+    result %= mod
   end
 
   result
 end
 
 def main
-  n,k = gets.chomp.split(' ').map(&:to_i)
-  a = gets.chomp.split(' ').map(&:to_i)
-  puts ans(n,k,a)
+  n = gets.chomp.to_i
+  c = gets.chomp.split(' ').map(&:to_i)
+
+  print ans(n,c)
 end
 
 main
 
 class SampleTest < Minitest::Test
   def test_1
-    expected = [4,3]
-    actual = ans(2,7,[1,8])
+    expected = 2
+    actual = ans(2,[1,3])
     assert_equal expected, actual
   end
 
   def test_2
-    expected = [3]
-    actual = ans(1,3,[33])
+    expected = 12
+    actual = ans(4, [3,3,4,4])
     assert_equal expected, actual
   end
 
   def test_3
-    expected = %w[
-      142857142857
-      142857142857
-      142857142858
-      142857142857
-      142857142857
-      142857142857
-      142857142857
-    ].map(&:to_i)
-    actual = ans(7,1000000000000,%w[99 8 2 4 43 5 3])
+    expected = 405924645
+    actual = ans(10, %w[999999917 999999914 999999923 999999985 999999907 999999965 999999914 999999908 999999951 999999979].map(&:to_i))
     assert_equal expected, actual
   end
 end
