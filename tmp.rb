@@ -1,43 +1,54 @@
 require 'minitest/autorun'
 
-def ans(n,c)
-  c.sort!
-  mod = 10 ** 9 + 7
+def ans(h,w,n,abs)
+  as = []
+  bs = []
+  abs.each_with_index { |ab, idx| as[idx], bs[idx] = ab[0], ab[1] }
 
-  result = 1
-  c.each_with_index do |x, idx|
-    result *= (x-idx)
-    result %= mod
+  a_hash = {}
+  b_hash = {}
+  as.uniq.sort.each_with_index do |x,idx|
+    a_hash[x.to_s] = idx + 1
+  end
+  bs.uniq.sort.each_with_index do |x,idx|
+    b_hash[x.to_s] = idx + 1
+  end
+
+  result = []
+  n.times do |i|
+    a = a_hash[as[i].to_s]
+    b = b_hash[bs[i].to_s]
+
+    result << [a,b]
   end
 
   result
 end
 
 def main
-  n = gets.chomp.to_i
-  c = gets.chomp.split(' ').map(&:to_i)
+  h,w, n = gets.chomp.split(' ').map(&:to_i)
+  abs = []
+  n.times { abs << gets.chomp.split(' ').map(&:to_i) }
 
-  print ans(n,c)
+  result = ans(h,w,n,abs)
+
+  result.each do |x|
+    puts "#{x[0]} #{x[1]}"
+  end
 end
 
 main
 
-class SampleTest < Minitest::Test
-  def test_1
-    expected = 2
-    actual = ans(2,[1,3])
-    assert_equal expected, actual
-  end
-
-  def test_2
-    expected = 12
-    actual = ans(4, [3,3,4,4])
-    assert_equal expected, actual
-  end
-
-  def test_3
-    expected = 405924645
-    actual = ans(10, %w[999999917 999999914 999999923 999999985 999999907 999999965 999999914 999999908 999999951 999999979].map(&:to_i))
-    assert_equal expected, actual
-  end
-end
+# class SampleTest < Minitest::Test
+#   def test_1
+#     expected = [[2,1], [1,2]]
+#     actual = ans(4,5,2,[[3,2], [2,5]])
+#     assert_equal expected, actual
+#   end
+#
+#   def test_2
+#     expected = true
+#     actual = true
+#     assert_equal expected, actual
+#   end
+# end
