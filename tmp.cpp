@@ -2,9 +2,10 @@
 using namespace std;
 
 int main() {
-    double a,b;
+    string a, b;
     cin >> a >> b;
+    string c = a + b;
 
-    printf("%.12lf", abs(a-b));
+    cout <<  s << endl;
     return 0;
 }
