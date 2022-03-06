@@ -1,23 +1,23 @@
 def ans(n)
-  count = 0
-  mod = 998244353
-  tmp = []
-  (1..9).each do |i|
-    (1..9).each do |j|
-      (1..9).each do |k|
-        (1..9).each do |l|
-          if (j-i).abs <= 1 && (j-k).abs <= 1 && (l-k).abs <= 1
-            count += 1
-            tmp << (i.to_s + j.to_s + k.to_s + l.to_s).to_i
-          end
-        end
-      end
+  # build dp
+  dp = Array.new(1000005, default = Array.new(10, default = 0))
+  (1..9).each { |d| dp[1][d] = 1 }
+
+  (2..n).each do |i|
+    (1..9).each do |d|
+      dp[i][d] += dp[i-1][d-1] if d-1 >= 1
+      dp[i][d] += dp[i-1][d]
+      # dp[i][d] += dp[i-1][d+1] if d+1 <= 9
     end
   end
 
-  print tmp
-  count % mod
+  res = 0
+  (1..9).each do |d|
+    res += dp[n][d]
+  end
+
+  res
 end
 
-ans(4)
+print ans(2)
 
