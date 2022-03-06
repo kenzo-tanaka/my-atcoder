@@ -1,43 +1,27 @@
-def add(x,y)
-  mod = 998244353
-  x += y
-  x %= mod
-end
-
+# https://atcoder.jp/contests/abc242/submissions/29913226
 def ans(n)
-  mod = 998244353
-  # build dp
-  dp = Array.new(n)
-  # CAUTION!:
-  # Array.new(n, default = Array.new(9, default = 0))と定義すると
-  # dp[0][1]などを変更したとき、他の要素も変更されるので、正しいロジックとならないので注意
-  n.times { |i| dp[i] = Array.new(9, default = 0)  }
-  9.times { |d| dp[0][d] = 1 }
+  mod=998244353
 
-  (1..(n-1)).each do |i|
-    9.times do |d|
-      dp[i][d] += dp[i-1][d-1] if d >= 1
-      dp[i][d] %= mod
+  x = [0,1,1,1,1,1,1,1,1,1,0]
 
-      dp[i][d] += dp[i-1][d]
-      dp[i][d] %= mod
-
-      dp[i][d] += dp[i-1][d+1] if d <= 7
-      dp[i][d] %= mod
+  1.upto(n-1) do |i|
+    y = Array.new(11) do |j|
+      if j == 0 || j == 10
+        0
+      else
+        (x[j-1] + x[j] + x[j+1]) % mod
+      end
     end
+
+    x = y
   end
 
-  result = 0
-  9.times do |d|
-    result += dp[n-1][d]
-  end
-
-  result
+  x.sum % mod
 end
 
-# def main
-#   n = gets.chomp.to_i
-#   print ans(n)
-# end
-#
-# main
+def main
+  n = gets.chomp.to_i
+  print ans(n)
+end
+
+main
