@@ -6,6 +6,11 @@ int main() {
     cin >> a >> b;
     string c = a + b;
 
-    cout <<  s << endl;
+    int asize = a.size();
+    int bsize = b.size();
+
+    int m = max(asize, bsize);
+
+    cout << m << endl;
     return 0;
 }
