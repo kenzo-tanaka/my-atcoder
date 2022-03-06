@@ -1,5 +1,3 @@
-require 'minitest/autorun'
-
 def ans(n,as)
   ls = []
   rs = []
@@ -25,24 +23,20 @@ def ans(n,as)
   end
 
   cnt = 0
-  (0..n).each do |i|
-    (i+1...n).each do |j|
+  (0..(n-1)).each do |i|
+    (i+1..(n-1)).each do |j|
       cnt += 1 if [ls[i], ls[j]].max <= [rs[i], rs[j]].min
     end
   end
   cnt
 end
 
-class SampleTest < Minitest::Test
-  def test_1
-    expected = 2
-    actual = ans(3, [[1,1,2], [2,2,3], [3,2,4]])
-    assert_equal expected, actual
-  end
+def main
+  n = gets.chomp.to_i
+  a = []
+  n.times { a<< gets.chomp.split(' ').map(&:to_i) }
 
-  def test_2
-    expected = true
-    actual = true
-    assert_equal expected, actual
-  end
+  print ans(n,a)
 end
+
+main
