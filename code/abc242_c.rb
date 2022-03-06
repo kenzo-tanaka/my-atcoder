@@ -1,23 +1,36 @@
 def ans(n)
+  mod = 998244353
   # build dp
-  dp = Array.new(1000005, default = Array.new(10, default = 0))
-  (1..9).each { |d| dp[1][d] = 1 }
+  dp = Array.new(n)
+  # CAUTION!:
+  # Array.new(n, default = Array.new(9, default = 0))と定義すると
+  # dp[0][1]などを変更したとき、他の要素も変更されるので、正しいロジックとならないので注意
+  n.times { |i| dp[i] = Array.new(9, default = 0)  }
+  9.times { |d| dp[0][d] = 1 }
 
-  for i in (2..n)
-    for d in (1..9)
-      dp[i][d] += dp[i-1][d-1] if d-1 >= 1
-      dp[i][d] += dp[i-1][d]
-      dp[i][d] += dp[i-1][d+1] if d+1 <= 9
+  (1..(n-1)).each do |i|
+    9.times do |d|
+      if d == 0
+        dp[i][d] = (dp[i-1][d] + dp[i-1][d+1]) % mod
+      elsif d == 8
+        dp[i][d] = (dp[i-1][d] + dp[i-1][d-1]) % mod
+      else
+        dp[i][d] = (dp[i-1][d] + dp[i-1][d-1] + dp[i-1][d+1]) % mod
+      end
     end
   end
 
-  res = 0
-  (1..9).each do |d|
-    res += dp[n][d]
+  result = 0
+  9.times do |d|
+    result += dp[n-1][d] % mod
   end
 
-  res
+  result
 end
 
-print ans(2)
+def main
+  n = gets.chomp.to_i
+  print ans(n)
+end
 
+main
