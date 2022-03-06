@@ -13,4 +13,10 @@ class SampleTest < Minitest::Test
     actual = ans(2)
     assert_equal expected, actual
   end
+
+  def test_3
+    expected = 248860093
+    actual = ans(1000000)
+    assert_equal expected, actual
+  end
 end
