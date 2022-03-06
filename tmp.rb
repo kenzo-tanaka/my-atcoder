@@ -25,7 +25,7 @@ def ans(n,as)
   end
 
   cnt = 0
-  (0...n).each do |i|
+  (0..n).each do |i|
     (i+1...n).each do |j|
       cnt += 1 if [ls[i], ls[j]].max <= [rs[i], rs[j]].min
     end
