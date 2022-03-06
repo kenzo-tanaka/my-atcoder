@@ -3,11 +3,11 @@ def ans(n)
   dp = Array.new(1000005, default = Array.new(10, default = 0))
   (1..9).each { |d| dp[1][d] = 1 }
 
-  (2..n).each do |i|
-    (1..9).each do |d|
+  for i in (2..n)
+    for d in (1..9)
       dp[i][d] += dp[i-1][d-1] if d-1 >= 1
       dp[i][d] += dp[i-1][d]
-      # dp[i][d] += dp[i-1][d+1] if d+1 <= 9
+      dp[i][d] += dp[i-1][d+1] if d+1 <= 9
     end
   end
 
