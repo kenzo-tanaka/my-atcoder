@@ -2,6 +2,7 @@
 
 int n, A[50];
 
+// 再帰関数
 int solve (int i, int m) {
     if (m == 0) return 1;
     if (i >= n) return 0;
