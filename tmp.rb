@@ -1,54 +1,48 @@
 require 'minitest/autorun'
 
-def ans(h,w,n,abs)
-  as = []
-  bs = []
-  abs.each_with_index { |ab, idx| as[idx], bs[idx] = ab[0], ab[1] }
+def ans(n,as)
+  ls = []
+  rs = []
 
-  a_hash = {}
-  b_hash = {}
-  as.uniq.sort.each_with_index do |x,idx|
-    a_hash[x.to_s] = idx + 1
+  as.each do |a|
+    t = a[0]
+    l = a[1]
+    r = a[2]
+
+    l *= 2
+    r *= 2
+
+    if t == 3 || t == 4
+      l += 1
+    end
+
+    if t ==2 || t == 4
+      r -= 1
+    end
+
+    ls << l
+    rs << r
   end
-  bs.uniq.sort.each_with_index do |x,idx|
-    b_hash[x.to_s] = idx + 1
+
+  cnt = 0
+  (0...n).each do |i|
+    (i+1...n).each do |j|
+      cnt += 1 if [ls[i], ls[j]].max <= [rs[i], rs[j]].min
+    end
   end
-
-  result = []
-  n.times do |i|
-    a = a_hash[as[i].to_s]
-    b = b_hash[bs[i].to_s]
-
-    result << [a,b]
-  end
-
-  result
+  cnt
 end
 
-def main
-  h,w, n = gets.chomp.split(' ').map(&:to_i)
-  abs = []
-  n.times { abs << gets.chomp.split(' ').map(&:to_i) }
+class SampleTest < Minitest::Test
+  def test_1
+    expected = 2
+    actual = ans(3, [[1,1,2], [2,2,3], [3,2,4]])
+    assert_equal expected, actual
+  end
 
-  result = ans(h,w,n,abs)
-
-  result.each do |x|
-    puts "#{x[0]} #{x[1]}"
+  def test_2
+    expected = true
+    actual = true
+    assert_equal expected, actual
   end
 end
-
-main
-
-# class SampleTest < Minitest::Test
-#   def test_1
-#     expected = [[2,1], [1,2]]
-#     actual = ans(4,5,2,[[3,2], [2,5]])
-#     assert_equal expected, actual
-#   end
-#
-#   def test_2
-#     expected = true
-#     actual = true
-#     assert_equal expected, actual
-#   end
-# end
