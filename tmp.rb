@@ -1,29 +1,33 @@
-def ans(n,k,c)
-  hash = {}
-  c.each { |x| hash[x] = 0 }
+F = Array.new(44)
 
-  kind = 0
-  max = 0
+def fib(n)
+  return 1 if n == 0
+  return 1 if n == 1
+  return F[n] unless F[n].nil?
 
-  n.times do |i|
-    kind += 1 if hash[c[i]] == 0
-    hash[c[i]] += 1
-
-    if i >= k
-      hash[c[i-k]] -= 1
-      kind -= 1 if hash[c[i-k]] == 0
-    end
-
-    max = [max, kind].max
-  end
-
-  max
+  F[n] = fib(n-2) + fib(n-1)
+  F[n]
 end
 
 def main
-  n, k = gets.chomp.split(' ').map(&:to_i)
-  c = gets.chomp.split(' ').map(&:to_i)
-  print ans(n,k,c)
+  n = gets.chomp.to_i
+  print fib(n)
 end
 
 main
+
+require 'minitest/autorun'
+
+class SampleTest < Minitest::Test
+  def test_1
+    expected = 3
+    actual = fib(3)
+    assert_equal expected, actual
+  end
+
+  def test_1
+    expected = 3
+    actual = fib(44)
+    assert_equal expected, actual
+  end
+end
