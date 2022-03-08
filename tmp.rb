@@ -1,33 +1,36 @@
-F = Array.new(44)
+def ans(h,w,n,abs)
+  as, bs = [], []
+  abs.each_with_index { |x, idx| as[idx], bs[idx] = x[0], x[1] }
 
-def fib(n)
-  return 1 if n == 0
-  return 1 if n == 1
-  return F[n] unless F[n].nil?
+  a_hash, b_hash = {}, {}
+  as.sort.uniq.each_with_index do |x, idx|
+    a_hash[x] = idx + 1
+  end
+  bs.sort.uniq.each_with_index do |x, idx|
+    b_hash[x] = idx + 1
+  end
 
-  F[n] = fib(n-2) + fib(n-1)
-  F[n]
+  result = []
+
+  abs.each do |ab|
+    a = ab[0]
+    b = ab[1]
+
+    result << [a_hash[a], b_hash[b]]
+  end
+
+  result
 end
 
 def main
-  n = gets.chomp.to_i
-  print fib(n)
+  h,w,n = gets.chomp.split(' ').map(&:to_i)
+  abs = []
+  n.times { abs << gets.chomp.split(' ').map(&:to_i) }
+
+  result = ans(h,w,n, abs)
+  result.each do |x|
+    puts x.join(" ")
+  end
 end
 
 main
-
-require 'minitest/autorun'
-
-class SampleTest < Minitest::Test
-  def test_1
-    expected = 3
-    actual = fib(3)
-    assert_equal expected, actual
-  end
-
-  def test_1
-    expected = 3
-    actual = fib(44)
-    assert_equal expected, actual
-  end
-end
