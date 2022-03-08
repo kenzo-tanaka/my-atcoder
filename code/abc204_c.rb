@@ -13,7 +13,7 @@ class Dfs
   end
 
   def dfs(v)
-    return @tmp[v] if @tmp[v]
+    return if @tmp[v]
 
     @tmp[v] = true
     @graph[v].each { |vv| dfs(vv) }
@@ -37,12 +37,12 @@ class Dfs
   end
 end
 
-# def main
-#   n, m = gets.chomp.split(' ').map(&:to_i)
-#   abs = []
-#   m.times { abs << gets.chomp.split(' ').map(&:to_i) }
-#
-#   print Dfs.new(n,m,abs).ans
-# end
-#
-# main
+def main
+  n, m = gets.chomp.split(' ').map(&:to_i)
+  abs = []
+  m.times { abs << gets.chomp.split(' ').map(&:to_i) }
+
+  print Dfs.new(n,m,abs).ans
+end
+
+main
