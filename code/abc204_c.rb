@@ -1,13 +1,15 @@
-TMP=Array.new(2000, default = false)
+TMP = Array.new(2000, default = false)
 G = Array.new(2000, default = [])
 
 def dfs(v)
   return TMP[v] if TMP[v]
 
   TMP[v] = true
-  for vv in G[v]
-    dfs(vv)
-  end
+  G[v].each { |vv| dfs(vv) }
+end
+
+def tmp_reset
+  TMP.length.times { |i| TMP[i] = false }
 end
 
 def ans(n,m,abs)
@@ -19,13 +21,20 @@ def ans(n,m,abs)
 
   result = 0
   n.times do |i|
-    TMP.length.times do |i|
-      TMP[i] = false
-    end
-
+    tmp_reset
     dfs(i)
-    result += TMP.count { |x| x == true }
+    result += TMP.count { |x| x }
   end
 
   result
 end
+
+# def main
+#   n, m = gets.chomp.split(' ').map(&:to_i)
+#   abs = []
+#   m.times { abs << gets.chomp.split(' ').map(&:to_i) }
+#
+#   print ans(n,m,abs)
+# end
+#
+# main
