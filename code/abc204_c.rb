@@ -1,22 +1,16 @@
-# TMP = Array.new(2000, default = false)
 class Dfs
   def initialize(n,m,abs)
     @n = n
     @m = m
     @abs = abs
     @graph = Array.new(n, default = [])
-    @tmp = Array.new(n, default = false)
   end
 
-  def tmp_reset
-    @n.times { |i| @tmp[i] = false }
-  end
+  def dfs(v, flg)
+    return if flg[v]
 
-  def dfs(v)
-    return if @tmp[v]
-
-    @tmp[v] = true
-    @graph[v].each { |vv| dfs(vv) }
+    flg[v] = true
+    @graph[v].each { |vv| dfs(vv, flg) }
   end
 
   def build_graph
@@ -26,14 +20,15 @@ class Dfs
 
   def ans
     build_graph
-    result = 0
+    answer = 0
+    flg = [] * @n
     @n.times do |i|
-      tmp_reset
-      dfs(i)
-      result += @tmp.count { |x| x }
+      @n.times { |j| flg[j] = false }
+      dfs(i, flg)
+      @n.times { |j| answer +=1 if flg[j] }
     end
 
-    result
+    answer
   end
 end
 
