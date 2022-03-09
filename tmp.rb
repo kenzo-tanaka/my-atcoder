@@ -1,13 +1,28 @@
-def ans(a,b,c,x)
-  return 1.0 if x <= a
-  return 0 if x > b
+def rebuild_array(arr)
+  tmp = []
+  11.times do |j|
+    if j == 0 || j == 10
+      tmp[j] = 0
+    else
+      tmp[j] = (arr[j-1] + arr[j] + arr[j+1]) % 998244353
+    end
+  end
+  tmp
+end
 
-  c.to_f / (b - a).to_f
+def ans(n)
+  # 番兵を前後に含めた配列を用意する
+  # 番兵は0とする
+  arr = Array.new(11, default = 0)
+  9.times { |i| arr[i+1] = 1 }
+
+  (n-1).times { arr = rebuild_array arr }
+  arr.sum % 998244353
 end
 
 def main
-  a,b,c,x = gets.chomp.split(' ').map(&:to_i)
-  print ans(a,b,c,x)
+  n = gets.chomp.to_i
+  print ans n
 end
 
 main
