@@ -1,28 +1,35 @@
-def rebuild_array(arr)
-  tmp = []
-  11.times do |j|
-    if j == 0 || j == 10
-      tmp[j] = 0
-    else
-      tmp[j] = (arr[j-1] + arr[j] + arr[j+1]) % 998244353
+def ans(n, tlr_s)
+  l_s = []
+  r_s = []
+
+  tlr_s.each do |tlr|
+    t = tlr[0]
+
+    # 全て閉区間にする
+    l = tlr[1] * 2
+    r = tlr[2] * 2
+    l += 1 if t == 3 || t == 4
+    r -= 1 if t == 2 || t == 4
+    l_s << l
+    r_s << r
+  end
+
+  result = 0
+  n.times do |i|
+    (i+1...n).each do |j|
+      result += 1 if [l_s[i], l_s[j]].max <= [r_s[j], r_s[i]].min
     end
   end
-  tmp
-end
 
-def ans(n)
-  # 番兵を前後に含めた配列を用意する
-  # 番兵は0とする
-  arr = Array.new(11, default = 0)
-  9.times { |i| arr[i+1] = 1 }
-
-  (n-1).times { arr = rebuild_array arr }
-  arr.sum % 998244353
+  result
 end
 
 def main
   n = gets.chomp.to_i
-  print ans n
+  tlr_s = []
+  n.times { tlr_s << gets.chomp.split(' ').map(&:to_i) }
+
+  puts ans(n, tlr_s)
 end
 
 main
