@@ -1,15 +1,28 @@
 def ans(n,k,abs)
-  hash = {}
-  abs.each do |ab|
-    hash[ab[0]] = ab[1]
+  abs.sort!
+  remain, position = k, 0
+
+  n.times do |i|
+    a, b = abs[i][0], abs[i][1]
+    if a <= remain
+      remain -= a - position
+      remain += b
+      position = a
+    else
+      position += remain
+      remain = 0
+    end
   end
 
-  position = 0
-  while k > 0
-    k -= 1
-    k += hash[position] unless hash[position].nil?
-    position += 1
-  end
-
+  position += remain if remain > 0
   position
 end
+
+def main
+  n,k = gets.chomp.split(' ').map(&:to_i)
+  abs = []
+  n.times { abs << gets.chomp.split(' ').map(&:to_i) }
+
+  print ans n, k, abs
+end
+
