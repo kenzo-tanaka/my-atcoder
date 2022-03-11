@@ -1,21 +1,14 @@
 def ans(n,k,abs)
   abs.sort!
-  remain, position = k, 0
+  j = 0
+  answer = k
 
-  n.times do |i|
-    a, b = abs[i][0], abs[i][1]
-    if a <= remain
-      remain -= a - position
-      remain += b
-      position = a
-    else
-      position += remain
-      remain = 0
-    end
+  while(j < n && abs[j][0] <= answer)
+    answer += abs[j][1]
+    j += 1
   end
 
-  position += remain if remain > 0
-  position
+  answer
 end
 
 def main
@@ -25,4 +18,6 @@ def main
 
   print ans n, k, abs
 end
+
+main
 
