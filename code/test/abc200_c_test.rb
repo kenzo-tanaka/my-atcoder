@@ -9,8 +9,14 @@ class SampleTest < Minitest::Test
   end
 
   def test_2
-    expected = true
-    actual = true
+    expected = 0
+    actual = ans(5, [1,2,3,4,5])
+    assert_equal expected, actual
+  end
+
+  def test_3
+    expected = 9
+    actual = ans(8, %w[199 100 200 400 300 500 600 200].map(&:to_i))
     assert_equal expected, actual
   end
 end
