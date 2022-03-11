@@ -1,35 +1,24 @@
-def ans(n, tlr_s)
-  l_s = []
-  r_s = []
+def ans(n,k,a)
+  result = Array.new(n, default = k/n)
+  k %= n
 
-  tlr_s.each do |tlr|
-    t = tlr[0]
+  tmp = []
+  a.each_with_index { |x, idx| tmp << [x, idx] }
+  tmp.sort!
 
-    # 全て閉区間にする
-    l = tlr[1] * 2
-    r = tlr[2] * 2
-    l += 1 if t == 3 || t == 4
-    r -= 1 if t == 2 || t == 4
-    l_s << l
-    r_s << r
-  end
-
-  result = 0
-  n.times do |i|
-    (i+1...n).each do |j|
-      result += 1 if [l_s[i], l_s[j]].max <= [r_s[j], r_s[i]].min
-    end
+  k.times do |i|
+    # i番目に大きいaの値のindex
+    result[tmp[i][1]] += 1
   end
 
   result
 end
 
 def main
-  n = gets.chomp.to_i
-  tlr_s = []
-  n.times { tlr_s << gets.chomp.split(' ').map(&:to_i) }
+  n,k = gets.chomp.split(' ').map(&:to_i)
+  a = gets.chomp.split(' ').map(&:to_i)
 
-  puts ans(n, tlr_s)
+  puts ans n,k,a
 end
 
 main
