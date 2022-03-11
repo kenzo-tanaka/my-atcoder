@@ -14,3 +14,9 @@ def ans(n, a)
   end
   result
 end
+
+def main
+  n = gets.chomp.to_i
+  a = gets.chomp.split(' ').map(&:to_i)
+  print ans n,a
+end
