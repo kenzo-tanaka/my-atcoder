@@ -1,39 +1,25 @@
-def ans(n,k,abs)
-  abs.sort!
-  result = k
-  j = 0
+def ans(n)
+  # Set default values
+  dp = Array.new(11, default = 0)
+  9.times { |i| dp[i+1] = 1 }
+  mod = 998244353
 
-  while j < n && abs[j][0] <= result
-    result += abs[j][1]
-    j += 1
+  (n-1).times do
+    new_arr = Array.new(11, default = 0)
+    9.times do |j|
+      j += 1
+      new_arr[j] = (dp[j-1] + dp[j] + dp[j+1]) % mod
+    end
+
+    dp = new_arr
   end
 
-  result
+  dp.sum % mod
 end
 
 def main
-  n,k = gets.chomp.split(' ').map(&:to_i)
-  abs = []
-  n.times { abs << gets.chomp.split(' ').map(&:to_i) }
-
-  puts ans n,k,abs
+  n = gets.chomp.to_i
+  print ans n
 end
 
 main
-
-#
-# require 'minitest/autorun'
-#
-# class SampleTest < Minitest::Test
-#   def test_1
-#     expected = 4
-#     actual = ans(2,3, [[2,1], [5,10]])
-#     assert_equal expected, actual
-#   end
-#
-#   def test_2
-#     expected = true
-#     actual = true
-#     assert_equal expected, actual
-#   end
-# end
