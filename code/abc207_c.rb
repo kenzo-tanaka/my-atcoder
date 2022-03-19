@@ -20,7 +20,7 @@ def ans(n, a)
       cnt += 1 if [ls[i], ls[j]].max <= [rs[i], rs[j]].min
     end
   end
-  cnt
+cnt
 end
 
 def main
