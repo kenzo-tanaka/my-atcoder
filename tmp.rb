@@ -1,15 +1,24 @@
-n, k = gets.chomp.split(' ').map(&:to_i)
-ab = []
-n.times { ab << gets.chomp.split(' ').map(&:to_i) }
+# 3 2
+# 1 1 3
+# 3 1
 
-ab.sort!
+n, m = gets.chomp.split(' ').map(&:to_i)
+as = gets.chomp.split(' ').map(&:to_i)
+b = gets.chomp.split(' ').map(&:to_i)
 
-i = 0
-res = k
+a = []
+n.times { |i| a << [as[i]] }
 
-while i < n && ab[i][0] <= res
-  res += ab[i][1]
-  i += 1
+res = "Yes"
+m.times do |i|
+  flag = false
+  n.times do |j|
+    if a[j][0] == b[i] && a[j][1].nil?
+      flag = true
+      a[j][1] = true
+    end
+  end
+  res = "No" if flag == false
 end
 
 puts res
