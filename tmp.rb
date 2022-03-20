@@ -1,24 +1,24 @@
-# 3 2
-# 1 1 3
-# 3 1
-
 n, m = gets.chomp.split(' ').map(&:to_i)
-as = gets.chomp.split(' ').map(&:to_i)
+a = gets.chomp.split(' ').map(&:to_i)
 b = gets.chomp.split(' ').map(&:to_i)
+used = Array.new(m, default = false)
 
-a = []
-n.times { |i| a << [as[i]] }
-
-res = "Yes"
-m.times do |i|
+result = "Yes"
+b.each do |bb|
   flag = false
-  n.times do |j|
-    if a[j][0] == b[i] && a[j][1].nil?
+
+  a.each_with_index do |aa, idx|
+    if bb == aa && used[idx] != true
       flag = true
-      a[j][1] = true
+      used[idx] = true
+      break
     end
   end
-  res = "No" if flag == false
+
+  if flag == false
+    result = "No"
+    break
+  end
 end
 
-puts res
+puts result
