@@ -13,15 +13,40 @@ while flag
     flag = false
   else
     array << res
+    array.sort!
 
-    # TODO: perf
-    (1..(2 * n + 1)).each do |i|
-      next if array.include? i
+    check = false
+    array.each_with_index do |x, idx|
+      next if idx == 0
 
-      array << i
-      puts i
-      STDOUT.flush
-      break
+      pre = array[idx-1]
+      if (x - pre) >= 2
+        new = pre + 1
+        array.insert(idx, new)
+        check = true
+
+        puts new
+        STDOUT.flush
+
+        break
+      end
     end
+
+    if check == false
+      new = array.size + 1
+      array << new
+      puts new
+      STDOUT.flush
+    end
+
+    # # TODO: perf
+    # (1..(2 * n + 1)).each do |i|
+    #   next if array.include? i
+    #
+    #   array << i
+    #   puts i
+    #   STDOUT.flush
+    #   break
+    # end
   end
 end
