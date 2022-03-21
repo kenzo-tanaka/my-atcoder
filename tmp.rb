@@ -1,24 +1,16 @@
-h,w,n = gets.chomp.split(' ').map(&:to_i)
-a,b = [], []
-n.times do
-  ab = gets.chomp.split(' ').map(&:to_i)
-  a << ab[0]
-  b << ab[1]
+n = gets.chomp.to_i
+
+def doubled(n)
+  (n.to_s * 2).to_i
 end
 
-def build_hash(array)
-  hash = {}
-  array.uniq.sort.each_with_index do |x,idx|
-    hash[x] = idx + 1
-  end
-  hash
+j,count = 1, 0
+
+while doubled(j) <= n
+  count += 1
+  j += 1
 end
 
-a_hash = build_hash(a)
-b_hash = build_hash(b)
-
-n.times do |i|
-  puts "#{a_hash[a[i]]} #{b_hash[b[i]]}"
-end
+puts count
 
 
