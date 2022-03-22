@@ -33,13 +33,9 @@ end
 
 # 斜め
 unless flag
-  j = 0 # 基準点
-  array = []
-  3.times do |j|
-    6.times do |i|
-      array << s[i][j]
-      j += 1
-    end
+  j, k = 0, 0
+  6.times do
+    s[j, k]
   end
 end
 
