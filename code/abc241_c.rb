@@ -15,10 +15,24 @@ def check(array, time)
   flag
 end
 
+# 横
 flag = false
 s.each do |ss_array|
   flag = check(ss_array, n - 5)
   break if flag
+end
+
+# 縦
+unless flag
+  n.times do |i|
+    array = s.map { |x| x[i] }
+    flag = check(array, n - 5)
+    break if flag
+  end
+end
+
+# 斜め
+unless flag
 end
 
 puts flag ? "Yes" : "No"
