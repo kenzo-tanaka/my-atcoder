@@ -1,19 +1,11 @@
-s = gets.chomp
-t = gets.chomp
+s = gets.chomp.split(' ')
+t = gets.chomp.split(' ')
 
-ss = s.split('')
-tt = t.split('')
+def enable?(s,t)
+  a = [['R', 'G', 'B'], ['B', 'R', 'G'], ['G', 'B', 'R']]
+  b = [['R', 'B', 'G'], ['B', 'G', 'R'], ['G', 'R', 'B']]
 
-count = 0
-
-3.times do |i|
-  count += 1 if ss[i] == tt[i]
+  (a.include?(s) && a.include?(t)) || (b.include?(s) && b.include?(t))
 end
 
-if count == 3
-  puts "Yes"
-elsif count == 2
-  puts "No"
-else
-  puts "Yes"
-end
+puts enable?(s,t) ? "Yes" : "No"
