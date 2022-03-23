@@ -1,23 +1,25 @@
-n, m = gets.chomp.split(' ').map(&:to_i)
-a = gets.chomp.split(' ').map(&:to_i)
-b = gets.chomp.split(' ').map(&:to_i)
-used = Array.new(n, default = false)
+n = gets.chomp.to_i
+mx = 2 * n + 1
+
+used = Array.new(mx, default = false)
+puts 1
+STDOUT.flush
+used[0] = true
 
 flag = true
-b.each do |bb|
-  find = false
-  a.each_with_index do |aa, idx|
-    if aa == bb && used[idx] == false
-      find = true
+while flag
+  i = gets.chomp.to_i
+  break if i == 0
+
+  # 相手からの入力を保存
+  used[i-1] = true
+
+  used.each_with_index do |el, idx|
+    if el == false
       used[idx] = true
+      puts idx + 1
+      STDOUT.flush
       break
     end
   end
-
-  unless find
-    flag = false
-    break
-  end
 end
-
-puts flag ? "Yes" : "No"
