@@ -1,15 +1,23 @@
-n, k = gets.chomp.split(' ').map(&:to_i)
-ab = []
-n.times { ab << gets.chomp.split(' ').map(&:to_i) }
+n, m = gets.chomp.split(' ').map(&:to_i)
+a = gets.chomp.split(' ').map(&:to_i)
+b = gets.chomp.split(' ').map(&:to_i)
+used = Array.new(n, default = false)
 
-ab.sort!
-j = 0
-result = k
+flag = true
+b.each do |bb|
+  find = false
+  a.each_with_index do |aa, idx|
+    if aa == bb && used[idx] == false
+      find = true
+      used[idx] = true
+      break
+    end
+  end
 
-while j < n && result >= ab[j][0]
-  result += ab[j][1]
-  j += 1
+  unless find
+    flag = false
+    break
+  end
 end
 
-puts result
-
+puts flag ? "Yes" : "No"
