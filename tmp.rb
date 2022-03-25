@@ -1,25 +1,29 @@
 n = gets.chomp.to_i
-mx = 2 * n + 1
+xy = []
+n.times { xy << gets.chomp.split(' ').map(&:to_i) }
+s = gets.chomp
 
-used = Array.new(mx, default = false)
-puts 1
-STDOUT.flush
-used[0] = true
+n.times do |i|
+  xy[i] << s[i]
+end
 
-flag = true
-while flag
-  i = gets.chomp.to_i
-  break if i == 0
+hash = xy.group_by do |e|
+  e[1]
+end
+hash.each_value { |value| value.sort! }
 
-  # 相手からの入力を保存
-  used[i-1] = true
+flag = false
+hash.each_value do |value|
+  value.each_with_index do |v,idx|
+    next if idx == 0
 
-  used.each_with_index do |el, idx|
-    if el == false
-      used[idx] = true
-      puts idx + 1
-      STDOUT.flush
+    if value[idx-1][2] == "R" && v[2] == "L"
+      flag = true
       break
     end
   end
+
+  break if flag
 end
+
+puts flag ? "Yes" : "No"
