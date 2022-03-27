@@ -1,7 +1,14 @@
-a = [100,100,200]
+n, k = gets.chomp.split(' ').map(&:to_i)
+ab = []
+n.times { ab << gets.chomp.split(' ').map(&:to_i) }
+ab.sort!
 
-17.times do |i|
-  a << a[i] + a[i+1] + a[i+2]
+j = 0
+result = k
+
+while j < n && result >= ab[j][0]
+  result += ab[j][1]
+  j += 1
 end
 
-p a.last
+puts result
