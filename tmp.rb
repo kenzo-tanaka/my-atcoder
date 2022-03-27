@@ -3,6 +3,7 @@ used = Array.new(2*n + 1, default = false)
 
 # set used
 puts 1
+STDOUT.flush
 used[0] = true
 
 while true
@@ -15,6 +16,7 @@ while true
       next
     else
       puts idx+1
+      STDOUT.flush
 
       used[idx] = true
       break
