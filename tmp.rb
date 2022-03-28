@@ -1,12 +1,11 @@
-s, t = gets.chomp.split(' ').map(&:to_i)
+s = gets.chomp.split ' '
+t = gets.chomp.split ' '
 
-result = 0
-(0..s).each do |a|
-  (0..(s-a)).each do |b|
-    (0..(s-a-b)).each do |c|
-      result += 1 if (a+b+c) <= s && (a*b*c) <= t
-    end
-  end
+def check(s,t)
+  left = [["R", "G", "B"], ["B", "R", "G"], ["G", "B", "R"]]
+  right = [["R", "B", "G"], ["B", "G", "R"], ["G", "R", "B"]]
+
+  (left.include?(s) && left.include?(t)) || (right.include?(s) && right.include?(t))
 end
 
-puts result
+puts check(s,t) ? "Yes" : "No"
