@@ -1,11 +1,21 @@
-s = gets.chomp.split ' '
-t = gets.chomp.split ' '
+h,w,n = gets.chomp.split(' ').map(&:to_i)
+ab = []
+n.times { ab << gets.chomp.split(' ').map(&:to_i) }
 
-def check(s,t)
-  left = [["R", "G", "B"], ["B", "R", "G"], ["G", "B", "R"]]
-  right = [["R", "B", "G"], ["B", "G", "R"], ["G", "R", "B"]]
+a, b = [], []
+n.times { |i| a[i], b[i] = ab[i][0], ab[i][1] }
 
-  (left.include?(s) && left.include?(t)) || (right.include?(s) && right.include?(t))
+
+def build_hash(array)
+  hash = {}
+  array.sort.uniq.each_with_index do |x, idx|
+    hash[x] = idx + 1
+  end
+
+  hash
 end
 
-puts check(s,t) ? "Yes" : "No"
+a_hash, b_hash = build_hash(a), build_hash(b)
+n.times do |i|
+  puts "#{a_hash[a[i]]} #{b_hash[b[i]]}"
+end
