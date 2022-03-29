@@ -1,6 +1,24 @@
-s = []
-4.times { s << gets.chomp }
+n, m = gets.chomp.split(' ').map(&:to_i)
+a = gets.chomp.split(' ').map(&:to_i)
+b = gets.chomp.split(' ').map(&:to_i)
 
-result = ['H', '2B', '3B', 'HR'].all? { |v| s.include? v }
+used = Array.new(n, default = false)
+flag = true
 
-puts result ? "Yes" : "No"
+b.each do |bb|
+  find = false
+  a.each_with_index do |aa, idx|
+    if aa == bb && !used[idx]
+      find = true
+      used[idx] = true
+      break
+    end
+  end
+
+  if !find
+    flag = false
+    break
+  end
+end
+
+puts flag ? "Yes" : "No"
