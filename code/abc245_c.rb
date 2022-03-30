@@ -13,20 +13,35 @@ def include?(val, array)
 end
 
 flag = true
-a_range, b_range = [], []
+ranges = []
 
 n.times do |i|
   aa, bb = a[i], b[i]
+
+  # 初期値として範囲をセット
   if i == 0
     a_range, b_range = range_array(aa, k), range_array(bb, k)
+    ranges = [a_range, b_range]
     next
   else
-    if include?(aa, a_range) || include?(bb, a_range) || include?(aa, b_range) || include?(bb, b_range)
-      a_range, b_range = range_array(aa, k), range_array(bb, k)
-    else
+    # aa, bb どちらも範囲にない場合はloopを抜ける
+    if ranges.any? { |range| include?(aa, range) || include?(bb,range) } == false
       flag = false
       break
     end
+
+    # 新しい範囲を作成
+    # 重複が発生しないようにする
+    tmp = []
+    ranges.each do |range|
+      a_range = range_array(aa, k)
+      tmp << a_range if include?(aa, range) && !tmp.include?(a_range)
+
+      b_range = range_array(bb, k)
+      tmp << range_array(bb, k) if include?(bb, range) && !tmp.include?(b_range)
+    end
+
+    ranges = tmp
   end
 end
 
