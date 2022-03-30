@@ -1,24 +1,24 @@
-n, m = gets.chomp.split(' ').map(&:to_i)
+n = gets.chomp.to_i
 a = gets.chomp.split(' ').map(&:to_i)
-b = gets.chomp.split(' ').map(&:to_i)
+a.sort!.uniq!
 
-used = Array.new(n, default = false)
-flag = true
+j,i = 0, 0
+result = nil
 
-b.each do |bb|
-  find = false
-  a.each_with_index do |aa, idx|
-    if aa == bb && !used[idx]
-      find = true
-      used[idx] = true
-      break
-    end
+while true
+  if i >= n
+    result = j
+    break
   end
 
-  if !find
-    flag = false
+  if a[i] == j
+    i += 1
+    j += 1
+    next
+  else
+    result = j
     break
   end
 end
 
-puts flag ? "Yes" : "No"
+puts result
