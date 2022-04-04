@@ -1,28 +1,19 @@
-n = gets.chomp.to_i
+n, k = gets.chomp.split(' ').map(&:to_i)
+c = gets.chomp.split(' ').map(&:to_i)
+hash,kind,mx = {}, 0, 0
+c.each { |x| hash[x] = 0 }
 
-used = Array.new(2 * n + 1, default = false)
-puts 1
-STDOUT.flush
+n.times do |i|
+  # 新しい種類を発見
+  kind += 1 if hash[c[i]] == 0
+  hash[c[i]] += 1
 
-used[0] = true
-
-while true
-  x = gets.chomp.to_i
-  if x == 0
-    break
-  else
-    # used
-    used[x-1] = true
-
-    # output
-    used.each_with_index do |e, idx|
-      next if e == true
-
-      used[idx] = true
-      puts idx + 1
-      STDOUT.flush
-
-      break
-    end
+  if i >= k
+    hash[c[i - k]] -= 1
+    kind -= 1 if hash[c[i - k]] == 0
   end
+
+  mx = [mx, kind].max
 end
+
+puts mx
