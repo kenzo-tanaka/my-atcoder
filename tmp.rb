@@ -1,24 +1,8 @@
-n = gets.chomp.to_i
-a = gets.chomp.split(' ').map(&:to_i)
-a.sort!.uniq!
+a = [100,100,200]
 
-j,i = 0, 0
-result = nil
-
-while true
-  if i >= n
-    result = j
-    break
-  end
-
-  if a[i] == j
-    i += 1
-    j += 1
-    next
-  else
-    result = j
-    break
-  end
+17.times do |i|
+  x = a[i] + a[i+1] + a[i+2]
+  a << x
 end
 
-puts result
+p a.last
